@@ -13,7 +13,7 @@ public:
 
     my_smart_ptr(T *ptr): m_ptr{ptr} 
     {
-        cout<< "my_smart_ptr c.tor with ptr parameters \n";
+        cout<< "my_smart_ptr c.tor with ptr parameters "<< *m_ptr<<"\n";
     }
     //for exclusive ownership we need to delete copy c.tor and copy assignment operator
     my_smart_ptr(const my_smart_ptr& my_obj) = delete;
@@ -41,7 +41,8 @@ public:
 
     ~my_smart_ptr() {
         cout<<"~my_smart_ptr() is called...\n";
-        delete m_ptr;
+        if(this->m_ptr != nullptr)
+            delete this->m_ptr;
     }
 
     T* operator->() 
@@ -68,6 +69,12 @@ public:
     ~Myclass()
     {
         cout<<"~Myclass() is called..\n";
+    }
+
+    //this need for print Myclass parameter with operator<<
+    friend std::ostream& operator<<(ostream& os,const Myclass &m)
+    {
+        return os<< m.x <<"\n";
     }
 };
 
