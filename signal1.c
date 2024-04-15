@@ -22,7 +22,7 @@ int main()
         kill(pid, SIGSTOP);
 
         do{
-            printf("Time for wating to child process working...\n");
+            printf("Time for waiting to child process working...\n");
             scanf("%d", &var);
             printf("*********************************\n");
             if(var > 0) {
