@@ -53,8 +53,10 @@ int main()
 
     std::vector<thread> my_threads;
 
-    for(int i = 0; i < 50; i ++) {
-        my_threads.emplace_back(thread([](){ Singleton::get_instance(); }));
+    for(int i = 0; i < 10; i ++) {
+        my_threads.emplace_back(thread([](){ 
+            Singleton::get_instance();
+            Singleton::instance_destroy();}));
     }
 
     for(auto &r: my_threads) {
